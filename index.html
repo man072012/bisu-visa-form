@@ -2,6 +2,13 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<!--
+  BISU Visa Extension Form Generator
+  © 2026 Mansour Al-Ghamdi — man07.2012@gmail.com
+  All rights reserved. Free for personal use by BISU students; redistribution requires attribution.
+-->
+<meta name="author" content="Mansour Al-Ghamdi">
+<meta name="copyright" content="© 2026 Mansour Al-Ghamdi (man07.2012@gmail.com)">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>نموذج تمديد الإقامة — BISU 签证延期学院审核表</title>
 <style>
@@ -92,6 +99,17 @@
   @keyframes stamp{0%{transform:rotate(-25deg) scale(3);opacity:0}35%{transform:rotate(-10deg) scale(.95);opacity:1}45%{transform:rotate(-11deg) scale(1.04)}70%{transform:rotate(-10deg) scale(1);opacity:1}100%{transform:rotate(-10deg) scale(1.1);opacity:0}}
   @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
   @media (max-width:640px){ header.top{grid-template-columns:1fr;padding:26px 16px 14px} .seal{display:none} }
+  /* ---- credit ---- */
+  footer.credit{max-width:860px;margin:10px auto 0;padding:22px 16px 0;text-align:center;animation:rise .6s var(--ease) .55s both}
+  .credit-card{display:inline-flex;align-items:center;gap:16px;padding:14px 22px;border:1.5px solid var(--seal);border-radius:14px;background:linear-gradient(135deg,#fff 0%,#fff6f4 100%);box-shadow:0 10px 26px -18px var(--seal);position:relative;direction:rtl;text-align:right}
+  .credit-card::before{content:"©";position:absolute;inset-inline-end:-14px;top:-14px;width:32px;height:32px;border-radius:50%;background:var(--seal);color:#fff;font-weight:900;display:grid;place-items:center;font-size:15px;box-shadow:0 4px 10px -4px var(--seal);transform:rotate(-10deg)}
+  .credit-sig{font-family:"Brush Script MT","Segoe Script","Noto Naskh Arabic",cursive;font-size:26px;color:var(--seal);line-height:1;direction:ltr;font-style:italic;letter-spacing:.3px}
+  .credit-meta{font-size:13px;color:var(--ink2);line-height:1.6}
+  .credit-meta b{color:var(--ink);font-weight:800}
+  .credit-meta a{color:var(--seal);text-decoration:none;border-bottom:1px dashed var(--seal);direction:ltr;unicode-bidi:isolate;font-family:"Segoe UI",monospace;font-size:12.5px}
+  .credit-meta a:hover{border-bottom-style:solid}
+  .credit-note{font-size:11.5px;color:var(--muted);margin-top:10px;letter-spacing:.2px}
+  @media print{ footer.credit{display:none} }
   /* ---- guide ---- */
   details.guide{border:1px solid var(--line);background:var(--paper);border-radius:6px;margin:0 0 16px;padding:0}
   details.guide>summary{cursor:pointer;padding:14px 16px;font-weight:700;font-size:16px;list-style:none;display:flex;align-items:center;gap:10px}
@@ -131,14 +149,14 @@
 <fieldset>
   <legend>البيانات الأساسية</legend>
   <div class="row">
-    <div class="f full"><label>الاسم الكامل بالإنجليزي <small>كما في الجواز</small></label><input type="text" id="name" placeholder="ALGHAMDI MANSOUR HAMED B" autocapitalize="characters"></div>
+    <div class="f full"><label>الاسم الكامل بالإنجليزي <small>كما في الجواز</small></label><input type="text" id="name" placeholder="ALOTAIBI MOHAMMED AHMED A" autocapitalize="characters"></div>
     <div class="f"><label>الجنسية</label><input type="text" id="nat" value="Saudi Arabia 沙特阿拉伯"></div>
-    <div class="f"><label>رقم الجواز</label><input type="text" id="passport" placeholder="AP12345"></div>
-    <div class="f"><label>الرقم الجامعي <small>学号</small></label><input type="text" id="sid" placeholder="2025191007" inputmode="numeric"></div>
+    <div class="f"><label>رقم الجواز</label><input type="text" id="passport" placeholder="AP00000"></div>
+    <div class="f"><label>الرقم الجامعي <small>学号</small></label><input type="text" id="sid" placeholder="2025190000" inputmode="numeric"></div>
     <div class="f"><label>الكلية الحالية <small>目前所属学院</small></label><input type="text" id="school" value="汉语学院" list="schools"><datalist id="schools"><option value="汉语学院"><option value="英语学院"><option value="旅游科学学院"><option value="商学院"><option value="文化与传播学院"><option value="中东学院"></datalist></div>
     <div class="f"><label>بداية الدراسة <small>حسب خطاب القبول</small></label><input type="date" lang="en" id="start"></div>
     <div class="f"><label>نهاية الدراسة <small>حسب خطاب القبول</small></label><input type="date" lang="en" id="end"></div>
-    <div class="f"><label>رقم الجوال الصيني</label><input type="tel" id="phone" placeholder="15611889705"></div>
+    <div class="f"><label>رقم الجوال الصيني</label><input type="tel" id="phone" placeholder="138 0000 1234"></div>
     <div class="f full"><label>العنوان التفصيلي في بكين <small>بالصيني كما هو مسجّل في الشرطة</small></label><input type="text" id="addr" placeholder="北京市朝阳区……小区…号院…号楼…单元…室"></div>
   </div>
 </fieldset>
@@ -258,6 +276,14 @@
 </details>
 </div>
 
+
+<footer class="credit">
+  <div class="credit-card">
+    <div class="credit-sig">Mansour Al-Ghamdi</div>
+    <div class="credit-meta"><b>تصميم وتطوير: منصور الغامدي</b><br>جميع الحقوق محفوظة © 2026 · <a href="mailto:man07.2012@gmail.com">man07.2012@gmail.com</a></div>
+  </div>
+  <div class="credit-note">صُنعت لطلاب BISU الدوليين · يُسمح بالاستخدام الشخصي، ويُمنع النسخ أو إعادة النشر دون ذكر المصدر</div>
+</footer>
 </main>
 
 <div id="preview">
