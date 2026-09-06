@@ -475,6 +475,7 @@ toggles();
 function validate(){
   const need=[['name','الاسم'],['passport','رقم الجواز'],['sid','الرقم الجامعي'],['school','الكلية'],['start','بداية الدراسة'],['end','نهاية الدراسة'],['phone','رقم الجوال'],['addr','العنوان']];
   const miss=need.filter(([id])=>!$(id).value.trim()).map(([,l])=>l);
+  const arab=[...document.querySelectorAll('#formArea input[type=text],#formArea input[type=tel]')].filter(i=>/[\u0600-\u06FF]/.test(i.value)); if(arab.length){ const e=$('errors'); e.textContent='النماذج تُعبّأ بالإنجليزية أو الصينية فقط — يوجد نص عربي في: '+arab.map(i=>i.closest('.f').querySelector('label').firstChild.textContent.trim()).join('، '); e.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return false; }
   if(rv('ins')==='yes'&&(!$('insStart').value||!$('insEnd').value)) miss.push('تواريخ التأمين');
   const e=$('errors');
   if(miss.length){e.textContent='أكمل الحقول التالية: '+miss.join('، ');e.style.display='block';window.scrollTo({top:0,behavior:'smooth'});return false}
@@ -533,8 +534,9 @@ async function makePdf(rep,ticks){
   const cjk=await pdf.embedFont(CJK_B64,{subset:false});
   const tnr=await pdf.embedFont(StandardFonts.TimesRomanBold);
   const pages=pdf.getPages();
+  const okCP=new Set(cjk.getCharacterSet()); const clean=s=>[...s].filter(ch=>okCP.has(ch.codePointAt(0))).join('');
   const F=s=>/^[\x20-\x7E]*$/.test(s)?tnr:cjk;
-  const draw=(p,x,yb,s,size)=>{ if(!s)return; size=size||10.5; const f=F(s); const o={x,y:H-yb,size,font:f,color:rgb(0,0,0)}; pages[p].drawText(s,o); if(f===cjk){ pages[p].drawText(s,{...o,x:x+0.35}); pages[p].drawText(s,{...o,y:o.y+0.25}); } };
+  const draw=(p,x,yb,s,size)=>{ if(!s)return; size=size||10.5; const f=F(s); if(f===cjk) s=clean(s); if(!s)return; const o={x,y:H-yb,size,font:f,color:rgb(0,0,0)}; pages[p].drawText(s,o); if(f===cjk){ pages[p].drawText(s,{...o,x:x+0.35}); pages[p].drawText(s,{...o,y:o.y+0.25}); } };
   const fit=(s,f,maxW,size)=>{ let n=s.length; while(n>0&&f.widthOfTextAtSize(s.slice(0,n),size)>maxW)n--; return n; };
   const D=(k,s)=>{const p=POS[k];draw(p[0],p[1],p[2],s)};
   D('NAME',rep.NAME);D('NAT',rep.NAT);D('PASSPORT',rep.PASSPORT);D('SID',rep.SID);D('SCHOOL',rep.SCHOOL);
@@ -577,8 +579,9 @@ async function fillRegPdf(form,V,syms,cbs){
       const on=key.startsWith('SYM_')?syms.has(key):cbs.has(key); if(!on) continue;
       const cx=x+4, cy=H-yb+3.2, r=3.1;
       pg.drawLine({start:{x:cx-r,y:cy-r},end:{x:cx+r,y:cy+r},thickness:1,color:black}); pg.drawLine({start:{x:cx-r,y:cy+r},end:{x:cx+r,y:cy-r},thickness:1,color:black}); continue; }
-    const s=(V[key]||'').trim(); if(!s) continue;
+    let s=(V[key]||'').trim(); if(!s) continue;
     const f=(/^[\x20-\x7E]*$/.test(s)||!cjk)?tnr:cjk; let size=sz;
+    if(f===cjk){ const okCP=new Set(cjk.getCharacterSet()); s=[...s].filter(ch=>okCP.has(ch.codePointAt(0))).join(''); if(!s) continue; } else { s=s.replace(/[^\x20-\x7E]/g,''); }
     let w=f.widthOfTextAtSize(s,size); let lines=[s];
     if(w>maxw && ((al==='c'&&form==='onefile')||/^(ADDRESS|HOBBIES)$/.test(key))){
       // wrap into up to 3 lines (prefer spaces, else per character)
@@ -632,6 +635,7 @@ function fillDocx(b64,vals,syms,cbs){
 async function makeReg(){
   const need=[['r_family','اسم العائلة'],['r_given','الاسم الأول'],['r_passport','رقم الجواز'],['r_passexp','انتهاء الجواز'],['r_dob','تاريخ الميلاد'],['r_phone','الجوال'],['r_email','البريد'],['F_NAME','اسم الأب'],['F_TEL','هاتف الأب'],['M_NAME','اسم الأم'],['M_TEL','هاتف الأم'],['E_NAME','جهة الاتصال في الصين'],['E_TEL','هاتف جهة الاتصال']];
   const miss=need.filter(([id])=>!gv(id)).map(([,l])=>l); const e=$('rerrors');
+  const arab=[...document.querySelectorAll('#regArea input[type=text],#regArea input[type=tel]')].filter(i=>/[\u0600-\u06FF]/.test(i.value)); if(arab.length){ e.textContent='النماذج تُعبّأ بالإنجليزية أو الصينية فقط — يوجد نص عربي في: '+arab.map(i=>i.closest('.f').querySelector('label').firstChild.textContent.trim()).join('، '); e.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return; }
   if(miss.length){ e.textContent='أكمل الحقول التالية: '+miss.join('، '); e.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return; }
   e.style.display='none';
   const btn=$('btnReg'); btn.disabled=true; btn.classList.add('busy'); btn.textContent='جارٍ الإنشاء';
