@@ -124,6 +124,8 @@
   .grid4 .who{grid-column:1/-1;font-weight:800;font-size:14px;color:var(--seal);margin-top:6px}
   @media (max-width:640px){ .grid3{grid-template-columns:1fr 1fr} .grid4{grid-template-columns:1fr 1fr} }
   .req{color:var(--seal)}
+  .f.missing input{border-color:var(--seal);box-shadow:0 0 0 4px rgba(179,38,30,.14)}
+  .f.missing::after{content:"مطلوب";color:var(--seal);font-size:11px;position:absolute;top:2px;inset-inline-end:2px;animation:pop .3s var(--ease)}
   #regFiles{display:none;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 18px}
   #regFiles .dlfile{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:right;padding:14px 16px;border:1.5px solid var(--seal);background:linear-gradient(135deg,#fff,#fff6f4);color:var(--ink);font-weight:700;animation:rise .5s var(--ease) both}
   #regFiles .dlfile .btns{display:flex;gap:6px}
@@ -185,11 +187,11 @@
     <div class="f"><label>الجنسية</label><input type="text" id="r_nat" value="Saudi Arabia"></div>
     <div class="f"><label>رقم الجواز <span class="req">*</span></label><input type="text" id="r_passport" placeholder="AP00000"></div>
     <div class="f"><label>انتهاء الجواز <span class="req">*</span></label><input type="date" lang="en" id="r_passexp"></div>
-    <div class="f"><label>انتهاء التأشيرة/الإقامة الحالية</label><input type="date" lang="en" id="r_visaexp"></div>
+    <div class="f"><label>انتهاء التأشيرة/الإقامة الحالية <span class="req">*</span></label><input type="date" lang="en" id="r_visaexp"></div>
     <div class="f"><label>تاريخ الميلاد <span class="req">*</span></label><input type="date" lang="en" id="r_dob"></div>
     <div class="f"><label>بلد الميلاد</label><input type="text" id="r_bcountry" value="Saudi Arabia"></div>
-    <div class="f"><label>مدينة الميلاد</label><input type="text" id="r_bcity" placeholder="Riyadh"></div>
-    <div class="f"><label>الرقم الجامعي <small>学号</small></label><input type="text" id="r_sid" placeholder="2025190000"></div>
+    <div class="f"><label>مدينة الميلاد <span class="req">*</span></label><input type="text" id="r_bcity" placeholder="Riyadh"></div>
+    <div class="f"><label>الرقم الجامعي <small>学号</small> <span class="req">*</span></label><input type="text" id="r_sid" placeholder="2025190000"></div>
   </div>
   <div class="f full"><label>الجنس</label><div class="opts"><label><input type="radio" name="r_gender" value="M" checked>ذكر M</label><label><input type="radio" name="r_gender" value="F">أنثى F</label></div></div>
   <div class="f full"><label>الحالة الاجتماعية</label><div class="opts"><label><input type="radio" name="r_marital" value="Single" checked>أعزب Single</label><label><input type="radio" name="r_marital" value="Married">متزوج Married</label></div></div>
@@ -197,14 +199,14 @@
 
 <fieldset><legend>الدراسة</legend>
   <div class="row">
-    <div class="f"><label>الكلية والتخصص <small>School & Major</small></label><input type="text" id="r_major" value="汉语学院 国际中文教育 (TCSOL)"></div>
-    <div class="f"><label>أعلى مؤهل</label><input type="text" id="r_degree" value="Bachelor's Degree"></div>
-    <div class="f"><label>اللغة الأم</label><input type="text" id="r_lang" value="Arabic"></div>
-    <div class="f"><label>الديانة <small>كما يطلبه النموذج</small></label><input type="text" id="r_religion" value="Islam"></div>
-    <div class="f full"><label>جهة العمل أو الدراسة قبل BISU</label><input type="text" id="r_prev" value="Ministry of Education, Saudi Arabia"></div>
-    <div class="f"><label>بداية الدراسة</label><input type="date" lang="en" id="r_from" value="2026-09-01"></div>
-    <div class="f"><label>نهاية الدراسة</label><input type="date" lang="en" id="r_to" value="2028-07-31"></div>
-    <div class="f"><label>تاريخ الوصول/الدخول للحرم المخطط</label><input type="date" lang="en" id="r_enter" value="2026-09-07"></div>
+    <div class="f"><label>الكلية والتخصص <small>School & Major</small> <span class="req">*</span></label><input type="text" id="r_major" value="汉语学院 国际中文教育 (TCSOL)"></div>
+    <div class="f"><label>أعلى مؤهل <span class="req">*</span></label><input type="text" id="r_degree" value="Bachelor's Degree"></div>
+    <div class="f"><label>اللغة الأم <span class="req">*</span></label><input type="text" id="r_lang" value="Arabic"></div>
+    <div class="f"><label>الديانة <small>كما يطلبه النموذج</small> <span class="req">*</span></label><input type="text" id="r_religion" value="Islam"></div>
+    <div class="f full"><label>جهة العمل أو الدراسة قبل BISU <span class="req">*</span></label><input type="text" id="r_prev" value="Ministry of Education, Saudi Arabia"></div>
+    <div class="f"><label>بداية الدراسة <span class="req">*</span></label><input type="date" lang="en" id="r_from" value="2026-09-01"></div>
+    <div class="f"><label>نهاية الدراسة <span class="req">*</span></label><input type="date" lang="en" id="r_to" value="2028-07-31"></div>
+    <div class="f"><label>تاريخ الوصول/الدخول للحرم المخطط <span class="req">*</span></label><input type="date" lang="en" id="r_enter" value="2026-09-07"></div>
   </div>
   <div class="f full"><label>نوع الدراسة</label><div class="opts">
     <label><input type="radio" name="r_study" value="UG">بكالوريوس</label>
@@ -212,7 +214,7 @@
     <label><input type="radio" name="r_study" value="LANG">لغة صينية</label>
     <label><input type="radio" name="r_study" value="OTHER">أخرى</label></div>
     <input type="text" id="r_othertype" placeholder="حدّد النوع الآخر" style="margin-top:6px;display:none"></div>
-  <div class="f full"><label>طريقة دفع الرسوم <small>学费缴费类型</small></label><input type="text" id="r_tuition" value="自费 Self-financed (Saudi Government Scholarship)"></div>
+  <div class="f full"><label>طريقة دفع الرسوم <small>学费缴费类型</small> <span class="req">*</span></label><input type="text" id="r_tuition" value="自费 Self-financed (Saudi Government Scholarship)"></div>
 </fieldset>
 
 <fieldset><legend>الاتصال والسكن</legend>
@@ -224,9 +226,9 @@
     <div class="f"><label>الرمز البريدي <span class="req">*</span></label><input type="text" id="r_postcode" placeholder="12211"></div>
   </div>
   <div class="f full"><label>السكن في بكين</label><div class="opts"><label><input type="radio" name="r_living" value="DORM">سكن الجامعة</label><label><input type="radio" name="r_living" value="OUT" checked>خارج الجامعة داخل بكين</label></div></div>
-  <div class="f full"><label>العنوان في بكين <small>بالصيني كما هو مسجّل في الشرطة</small></label><input type="text" id="r_bjaddr" placeholder="北京市朝阳区……"></div>
-  <div class="f full"><label>هاتف مركز الشرطة/المجمع السكني <small>للساكنين خارج الجامعة، اختياري</small></label><input type="text" id="r_police" placeholder="派出所: 010-xxxxxxxx"></div>
-  <div class="f full"><label>سريان التأمين</label><input type="text" id="r_insurance" placeholder="2026/09/05 - 2027/09/04"></div>
+  <div class="f full"><label>العنوان في بكين <small>بالصيني كما هو مسجّل في الشرطة</small> <span class="req">*</span></label><input type="text" id="r_bjaddr" placeholder="北京市朝阳区……"></div>
+  <div class="f full"><label>هاتف مركز الشرطة أو المجمع السكني <small>مطلوب للساكنين خارج الجامعة (يُكتب في بطاقة الطالب)</small> <span class="req">*</span></label><input type="text" id="r_police" placeholder="派出所: 010-xxxxxxxx"></div>
+  <div class="f full"><label>سريان التأمين <span class="req">*</span></label><input type="text" id="r_insurance" placeholder="2026/09/05 - 2027/09/04"></div>
 </fieldset>
 
 <fieldset><legend>الصحة</legend>
@@ -235,7 +237,7 @@
   <div class="f full"><label>هل شُخّص أحد من يسكن معك بمرض معدٍ؟</label><div class="opts"><label><input type="radio" name="r_b" value="B1" checked>لا</label><label><input type="radio" name="r_b" value="B2">نعم</label></div><input type="date" lang="en" id="r_bdate" style="display:none;margin-top:6px"></div>
   <div class="f full"><label>هل لديك مرض يؤثر على دراستك أو يحتاج رعاية خاصة؟</label><div class="opts"><label><input type="radio" name="r_c" value="C1" checked>لا</label><label><input type="radio" name="r_c" value="C2">نعم</label></div></div>
   <div class="row">
-    <div class="f"><label>وصف الحالة الصحية <small>لبطاقة 一生一册</small></label><input type="text" id="r_health" value="Healthy 健康"></div>
+    <div class="f"><label>وصف الحالة الصحية <small>لبطاقة 一生一册</small> <span class="req">*</span></label><input type="text" id="r_health" value="Healthy 健康"></div>
     <div class="f"><label>الهوايات / القيود الغذائية</label><input type="text" id="r_hobbies" value="Halal food only 清真饮食"></div>
   </div>
 </fieldset>
@@ -258,7 +260,7 @@
     <div class="who">جهة التوصية <small>اختياري</small></div>
     <div class="f"><label>الاسم</label><input type="text" id="R_NAME"></div><div class="f"><label>المهنة</label><input type="text" id="R_OCC"></div><div class="f"><label>الهاتف</label><input type="tel" id="R_TEL"></div><div class="f"><label>البريد</label><input type="text" id="R_MAIL"></div>
     <div class="who">الضامن في الصين</div>
-    <div class="f"><label>الاسم</label><input type="text" id="G_NAME" value="Saudi Cultural Mission (Beijing)"></div><div class="f"><label>المهنة</label><input type="text" id="G_OCC" value="Cultural Attaché"></div><div class="f"><label>الهاتف</label><input type="tel" id="G_TEL" value="+86 10 84682863"></div><div class="f"><label>البريد</label><input type="text" id="G_MAIL"></div>
+    <div class="f"><label>الاسم <span class="req">*</span></label><input type="text" id="G_NAME" value="Saudi Cultural Mission (Beijing)"></div><div class="f"><label>المهنة</label><input type="text" id="G_OCC" value="Cultural Attaché"></div><div class="f"><label>الهاتف</label><input type="tel" id="G_TEL" value="+86 10 84682863"></div><div class="f"><label>البريد</label><input type="text" id="G_MAIL"></div>
   </div>
 </fieldset>
 
@@ -647,10 +649,13 @@ function fillDocx(b64,vals,syms,cbs){
 }
 async function makeReg(){
   if(/^\+966\s*$/.test(gv('r_hometel'))) $('r_hometel').value='';
-  const need=[['r_family','اسم العائلة'],['r_given','الاسم الأول'],['r_passport','رقم الجواز'],['r_passexp','انتهاء الجواز'],['r_dob','تاريخ الميلاد'],['r_phone','الجوال'],['r_email','البريد'],['r_homeaddr','عنوان المنزل'],['r_hometel','هاتف المنزل (مطلوب في الاستمارة)'],['r_postcode','الرمز البريدي'],['r_homeaddr','عنوان المنزل'],['r_postcode','الرمز البريدي (حقل إلزامي في الاستمارة)'],['F_NAME','اسم الأب'],['F_TEL','هاتف الأب'],['M_NAME','اسم الأم'],['M_TEL','هاتف الأم'],['E_NAME','جهة الاتصال في الصين'],['E_TEL','هاتف جهة الاتصال']];
+  const need=[['r_family','اسم العائلة'],['r_given','الاسم الأول'],['r_passport','رقم الجواز'],['r_passexp','انتهاء الجواز'],['r_visaexp','انتهاء التأشيرة/الإقامة الحالية'],['r_dob','تاريخ الميلاد'],['r_bcity','مدينة الميلاد'],['r_sid','الرقم الجامعي'],['r_major','الكلية والتخصص'],['r_degree','أعلى مؤهل'],['r_lang','اللغة الأم'],['r_religion','الديانة'],['r_prev','جهة العمل/الدراسة السابقة'],['r_from','بداية الدراسة'],['r_to','نهاية الدراسة'],['r_enter','تاريخ الوصول'],['r_tuition','طريقة دفع الرسوم'],['r_phone','الجوال الصيني'],['r_email','البريد'],['r_homeaddr','عنوان المنزل'],['r_hometel','هاتف المنزل'],['r_postcode','الرمز البريدي'],['r_insurance','سريان التأمين'],['r_health','وصف الحالة الصحية'],['F_NAME','اسم الأب'],['F_OCC','مهنة الأب'],['F_TEL','هاتف الأب'],['M_NAME','اسم الأم'],['M_OCC','مهنة الأم'],['M_TEL','هاتف الأم'],['E_NAME','جهة الاتصال في الصين'],['E_OCC','مهنة جهة الاتصال'],['E_TEL','هاتف جهة الاتصال'],['G_NAME','الضامن'],['G_TEL','هاتف الضامن']];
+  if(rv('r_living')==='OUT'){ need.push(['r_bjaddr','العنوان في بكين']); need.push(['r_police','هاتف مركز الشرطة/المجمع']); }
+  if(rv('r_study')==='OTHER') need.push(['r_othertype','نوع الدراسة الآخر']);
+  if(rv('r_a')==='A2') need.push(['r_adate','تاريخ الشفاء (A)']); if(rv('r_b')==='B2') need.push(['r_bdate','تاريخ الشفاء (B)']);
   const miss=need.filter(([id])=>!gv(id)||(id==='r_hometel'&&gv(id).replace(/[^0-9]/g,'').length<7)).map(([,l])=>l); const e=$('rerrors');
   const arab=[...document.querySelectorAll('#regArea input[type=text],#regArea input[type=tel]')].filter(i=>/[\u0600-\u06FF]/.test(i.value)); if(arab.length){ e.textContent='النماذج تُعبّأ بالإنجليزية أو الصينية فقط — يوجد نص عربي في: '+arab.map(i=>i.closest('.f').querySelector('label').firstChild.textContent.trim()).join('، '); e.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return; }
-  if(miss.length){ e.textContent='أكمل الحقول التالية: '+miss.join('، '); e.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return; }
+  if(miss.length){ e.textContent='لا يمكن الإنشاء قبل إكمال الحقول الإلزامية: '+miss.join('، '); e.style.display='block'; const first=need.find(([id])=>miss.includes(need.find(n=>n[0]===id)[1])); const el=first&&$(first[0]); if(el){ el.closest('.f').classList.add('missing'); el.scrollIntoView({behavior:'smooth',block:'center'}); el.focus(); } else window.scrollTo({top:0,behavior:'smooth'}); return; }
   e.style.display='none';
   const btn=$('btnReg'); btn.disabled=true; btn.classList.add('busy'); btn.textContent='جارٍ الإنشاء';
   try{
